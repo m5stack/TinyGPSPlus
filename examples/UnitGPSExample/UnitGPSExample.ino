@@ -7,7 +7,14 @@
 #include "MultipleSatellite.h"
 
 static const int RXPin = 22, TXPin = 21;
+
+//Be suitable for Unit GPS v1.1  https://docs.m5stack.com/en/unit/Unit-GPS%20v1.1
+//Be suitable for Unit GPS SMA   https://docs.m5stack.com/en/unit/Unit-GPS%20SMA
 static const uint32_t GPSBaud = 115200;
+
+//Be suitable for Unit GPS  https://docs.m5stack.com/en/unit/gps
+//static const uint32_t GPSBaud = 9600;
+
 // Create an instance of MultipleSatellite, assuming we use the Serial1 serial port
 MultipleSatellite gps(Serial1, GPSBaud, SERIAL_8N1, RXPin, TXPin);
 
