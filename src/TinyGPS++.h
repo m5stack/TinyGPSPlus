@@ -252,7 +252,37 @@ public:
   uint32_t sentencesWithFix() const { return sentencesWithFixCount; }
   uint32_t failedChecksum()   const { return failedChecksumCount; }
   uint32_t passedChecksum()   const { return passedChecksumCount; }
+  void reset() {
+      // Reset all parsing state variables
+      parity = 0;
+      isChecksumTerm = false;
+      curSentenceType = 0;
+      curTermNumber = 0;
+      curTermOffset = 0;
+      sentenceHasFix = false;
 
+      // Reset statistics
+      encodedCharCount = 0;
+      sentencesWithFixCount = 0;
+      failedChecksumCount = 0;
+      passedChecksumCount = 0;
+
+      // Clear location, date, and time
+      location = TinyGPSLocation();  // Assuming default constructor resets it
+      date = TinyGPSDate();          // Assuming default constructor resets it
+      time = TinyGPSTime();          // Assuming default constructor resets it
+
+      // Clear other attributes if necessary
+      speed = TinyGPSSpeed();         // Assuming default constructor resets it
+      course = TinyGPSCourse();       // Assuming default constructor resets it
+      altitude = TinyGPSAltitude();   // Assuming default constructor resets it
+      satellites = TinyGPSInteger();  // Assuming default constructor resets it
+      hdop = TinyGPSHDOP();           // Assuming default constructor resets it
+
+      // Clear custom elements if applicable
+      customElts = nullptr;
+      customCandidates = nullptr;
+  }
 private:
   enum {GPS_SENTENCE_GGA, GPS_SENTENCE_RMC, GPS_SENTENCE_OTHER};
 

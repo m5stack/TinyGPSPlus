@@ -72,6 +72,7 @@ public:
     {
         return findCharacter("ANTENNA");
     }
+    
     String getSatelliteMode()
     {
         write("$PCAS06,2*19\r\n");
@@ -90,6 +91,7 @@ public:
             return "Unknown";
         }
     }
+
     void setSatelliteMode(satellite_mode_t mode)
     {
         switch (mode) {
@@ -112,6 +114,7 @@ public:
                 break;
         }
     }
+
     void setSystemBootMode(boot_mode_t mode)
     {
         switch (mode) {
@@ -139,6 +142,10 @@ public:
         }
     }
 
+    void StandbyMode(){
+        write("$PCAS12,65535*1E\r\n");
+    }
+     
 private:
     HardwareSerial& _serial;
     long _baudRate;
